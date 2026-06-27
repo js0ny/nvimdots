@@ -1,4 +1,4 @@
 .direnv/
 after/
 env.custom.lua
-result/
+result

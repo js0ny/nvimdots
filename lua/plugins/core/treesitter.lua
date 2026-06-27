@@ -33,6 +33,7 @@ local parsers = {
   'vimdoc',
   'xml',
   'yaml',
+  'zsh',
   -- keep-sorted end
 }
 
