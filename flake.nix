@@ -1,7 +1,6 @@
 {
   description = "Public flake for my personal NixOS and Home Manager configurations";
 
-  # {{{ outputs
   outputs =
     inputs@{ flake-parts, ... }:
     flake-parts.lib.mkFlake { inherit inputs; } {
@@ -60,9 +59,17 @@
             type = "app";
             program = "${config.packages.default}/bin/nvim";
           };
+
+          devShells.default = pkgs.mkShell {
+            packages = with pkgs; [
+              lua5_1
+              selene
+              stylua
+              lua-language-server
+            ];
+          };
         };
     };
-  # }}}
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
