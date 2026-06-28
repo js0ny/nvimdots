@@ -1,0 +1,3 @@
+{
+  plugins.cord.enable = true;
+}
