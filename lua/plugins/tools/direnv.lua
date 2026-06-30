@@ -1,3 +1,4 @@
 return {
-  'direnv/direnv.vim',
+  'NotAShelf/direnv.nvim',
+  config = true,
 }

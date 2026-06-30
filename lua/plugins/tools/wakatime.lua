@@ -1,4 +1,7 @@
 return {
   'wakatime/vim-wakatime',
-  lazy = false,
+  event = 'InsertEnter',
+  opts = {
+    status_bar_enabled = false,
+  },
 }
