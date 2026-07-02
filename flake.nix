@@ -67,6 +67,9 @@
               stylua
               lua-language-server
             ];
+            shellHook = /* bash */ ''
+              export NVIMDOTS_DEV=1
+            '';
           };
         };
     };

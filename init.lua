@@ -20,6 +20,8 @@ require('core.lazy')
 local lazy_lockfile = vim.fn.stdpath('config') .. '/lazy-lock.json'
 if vim.env.NVIMDOTS_READONLY_CONFIG == '1' then
   lazy_lockfile = vim.fn.stdpath('state') .. '/lazy-lock.json'
+elseif vim.env.NVIMDOTS_DEV == '1' then
+  lazy_lockfile = vim.env.PWD .. '/lazy-lock.json'
 end
 
 require('lazy').setup({
