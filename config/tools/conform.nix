@@ -18,7 +18,10 @@ in
         lua = [ "stylua" ];
         nix = [ "nixfmt" ];
         nu = [ "nufmt" ];
-        python = [ "ruff" ];
+        python = [
+          "ruff"
+          "black"
+        ];
         javascript = (
           listToUnkeyedAttrs [
             "prettierd"
@@ -40,9 +43,18 @@ in
           ];
         };
       };
+      format_on_save.__raw = /* lua */ ''
+        function(bufnr)
+          -- Disable with a global or buffer-local variable
+          if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
+            return
+          end
+          return { timeout_ms = 500, lsp_format = 'fallback' }
+        end
+      '';
     };
   };
-  extraConfigLuaPost = /* lua */ ''
-    vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
-  '';
+  globalOpts = {
+    formatexpr = /* vim */ "v:lua.require'conform'.formatexpr()";
+  };
 }

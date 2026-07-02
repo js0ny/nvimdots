@@ -11,8 +11,8 @@
           "org"
           "tex"
         ];
-        cmd = ["PasteImage"];
-        keys = ["<localleader>p"];
+        cmd = [ "PasteImage" ];
+        keys = [ "<localleader>p" ];
       };
     };
     settings = {
@@ -26,7 +26,7 @@
   };
   keymaps = [
     {
-      mode = ["n"];
+      mode = [ "n" ];
       key = "<localleader>p";
       action.__raw = ''
         function()

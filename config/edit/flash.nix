@@ -10,11 +10,7 @@
         "x"
         "o"
       ];
-      action.__raw =
-        /*
-        lua
-        */
-        ''function() require("flash").jump() end'';
+      action.__raw = /* lua */ ''function() require("flash").jump() end'';
     }
     {
       key = "S";
@@ -23,11 +19,7 @@
         "x"
         "o"
       ];
-      action.__raw =
-        /*
-        lua
-        */
-        ''function() require("flash").treesitter() end'';
+      action.__raw = /* lua */ ''function() require("flash").treesitter() end'';
     }
   ];
 }

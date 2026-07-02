@@ -4,7 +4,7 @@
     lazyLoad = {
       enable = true;
       settings = {
-        cmd = ["CodeDiff"];
+        cmd = [ "CodeDiff" ];
       };
     };
     settings = {

@@ -1,13 +1,13 @@
 {
   plugins.lazydev = {
     enable = true;
-    lazyLoad.settings = {
-      ft = [ "lua" ];
-    };
+    # lazyLoad.settings = {
+    #   ft = [ "lua" ];
+    # };
     settings = {
-      enabled = /* lua */ ''
+      enabled.__raw = /* lua */ ''
         function()
-          return vim.g.lazydev_enabled = nil and true or vim.g.lazydev_enabled
+            return vim.g.lazydev_enabled == nil and true or vim.g.lazydev_enabled
         end
       '';
       library = [

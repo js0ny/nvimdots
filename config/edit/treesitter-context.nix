@@ -4,8 +4,8 @@
     lazyLoad = {
       enable = true;
       settings = {
-        keys = ["<leader>tc"];
-        cmd = ["TSContext"];
+        keys = [ "<leader>tc" ];
+        cmd = [ "TSContext" ];
       };
     };
     settings = {
@@ -16,7 +16,7 @@
   keymaps = [
     {
       key = "<leader>tc";
-      action.__raw = ''
+      action.__raw = /* lua */ ''
         function()
           require('treesitter-context').toggle()
         end
