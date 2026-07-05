@@ -21,38 +21,42 @@
           ...
         }:
         let
-          extraPackages = with pkgs; [
+          extraPackagesNoCC = with pkgs; [
             lua5_1
-            lua51Packages.luarocks
             lua-language-server
             stylua
             tree-sitter
             nodejs-slim_26
             pkg-config
-            markdown-oxide
             ripgrep
             ast-grep
-            clang
           ];
+          makeNvim =
+            packages:
+            pkgs.symlinkJoin {
+              name = "nvimdots";
+              paths = [ pkgs.neovim ];
+              buildInputs = [ pkgs.makeWrapper ];
+              postBuild = ''
+                mkdir -p $out/share/nvimdots
+                cp -r ${./.}/. $out/share/nvimdots/
+
+                wrapProgram $out/bin/nvim \
+                  --set NVIMDOTS_READONLY_CONFIG 1 \
+                  --set NVIM_APPNAME nvimdots \
+                  --set XDG_CONFIG_HOME $out/share \
+                  --run 'export XDG_DATA_HOME="''${XDG_DATA_HOME:-$HOME/.local/share}"' \
+                  --run 'export XDG_STATE_HOME="''${XDG_STATE_HOME:-$HOME/.local/state}"' \
+                  --run 'export XDG_CACHE_HOME="''${XDG_CACHE_HOME:-$HOME/.cache}"' \
+                  --prefix PATH : ${lib.makeBinPath packages}
+              '';
+            };
+
         in
         {
-          packages.default = pkgs.symlinkJoin {
-            name = "nvimdots";
-            paths = [ pkgs.neovim ];
-            buildInputs = [ pkgs.makeWrapper ];
-            postBuild = ''
-              mkdir -p $out/share/nvimdots
-              cp -r ${./.}/. $out/share/nvimdots/
-
-              wrapProgram $out/bin/nvim \
-                --set NVIMDOTS_READONLY_CONFIG 1 \
-                --set NVIM_APPNAME nvimdots \
-                --set XDG_CONFIG_HOME $out/share \
-                --run 'export XDG_DATA_HOME="''${XDG_DATA_HOME:-$HOME/.local/share}"' \
-                --run 'export XDG_STATE_HOME="''${XDG_STATE_HOME:-$HOME/.local/state}"' \
-                --run 'export XDG_CACHE_HOME="''${XDG_CACHE_HOME:-$HOME/.cache}"' \
-                --prefix PATH : ${lib.makeBinPath extraPackages}
-            '';
+          packages = {
+            default = makeNvim extraPackagesNoCC;
+            withCC = makeNvim (extraPackagesNoCC ++ [ pkgs.clang ]);
           };
 
           apps.default = {

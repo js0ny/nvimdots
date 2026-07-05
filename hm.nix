@@ -32,12 +32,9 @@ in
         nodejs-slim_26
         # snacks.image
         pkg-config
-        markdown-oxide
         # cli deps
         ripgrep
         ast-grep
-        # cc
-        clang
       ]
       ++ (lib.optionals withImg) (
         with pkgs;
