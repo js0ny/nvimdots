@@ -1,5 +1,6 @@
 --[[
 Environment Variable Configurations:
+* NVIM_NIXD_CUSTOM:      If true, allow environment variables config listed below.
 * NH_FLAKE:              Absolute path to the Flake root directory. If `programs.nh` is enabled, this is typically set automatically.
 * NIXD_NIXOS_HOST:       Overrides the default NixOS target hostname (defaults to the current system's hostname).
 * NIXD_DARWIN_HOST:      Overrides the default nix-darwin target hostname (defaults to the current system's hostname).
@@ -7,6 +8,44 @@ Environment Variable Configurations:
 * NIXD_HOME_TARGET:      Specifies the target configuration name in standalone mode (e.g. "user" or "user@hostname"). Only takes effect if NIXD_INDEPENDENT_HOME is enabled. Defaults to "$USER@<hostname>".
 * NIXD_ENABLE_NIXVIM:   Flag (e.g. set to 1). When enabled, it evaluates the nixvim configuration options from the Flake.
 --]]
+local custom = os.getenv('NVIM_NIXD_CUSTOM') or false
+if not custom then
+  local flake = '(builtins.getFlake("github:js0ny/nixcfgs"))'
+  local nixos = string.format('%s.nixosConfigurations.%s.options', flake, 'bauhaus')
+  return {
+    cmd = { 'nixd' },
+    filetypes = { 'nix' },
+    root_markers = { 'flake.nix', '.git' },
+    settings = {
+      nixd = {
+        nixpkgs = {
+          expr = string.format(
+            'import %s.inputs.nixpkgs { overlays = %s; }',
+            flake,
+            flake .. '.outputs.allOverlays'
+          ),
+        },
+        formatting = {
+          command = { 'nixfmt' },
+        },
+        options = {
+          ['nixos'] = { expr = nixos },
+          -- ['darwin'] = { expr = string.format('%s.darwinConfigurations.%s.options', flake, 'zen') },
+          ['home-manager'] = {
+            expr = string.format('%s.home-manager.users.type.getSubOptions []', nixos),
+          },
+          ['flake-parts'] = { expr = string.format('%s.debug.options', flake) },
+          ['nixvim'] = {
+            expr = string.format(
+              '%s.inputs.nixvim.nixvimConfigurations.x86_64-linux.default.options',
+              flake
+            ),
+          },
+        },
+      },
+    },
+  }
+end
 local function get_hostname()
   local hostname = vim.fn.hostname()
   hostname = string.gsub(hostname, '\n$', '')

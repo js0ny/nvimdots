@@ -56,5 +56,4 @@ in
   };
 
   xdg.configFile."nvim".source = ./.;
-
 }

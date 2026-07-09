@@ -1,5 +1,5 @@
 {
-  description = "Public flake for my personal NixOS and Home Manager configurations";
+  description = "Neovim config: the lazy.nvim way";
 
   outputs =
     inputs@{ flake-parts, ... }:

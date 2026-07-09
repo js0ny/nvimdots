@@ -25,6 +25,7 @@ local parsers = {
   'query',
   'ruby',
   'rust',
+  'svelte',
   'toml',
   'tsx',
   'typescript',
