@@ -14,6 +14,9 @@ local MATH_NODES = {
 
 return {
   'saghen/blink.cmp',
+  dependencies = {
+    'milanglacier/minuet-ai.nvim',
+  },
 
   -- use a release tag to download pre-built binaries
   version = '*',
@@ -78,6 +81,7 @@ return {
         },
       },
       documentation = { auto_show = true, window = { border = 'single' } },
+      trigger = { prefetch_on_insert = false },
     },
     signature = { window = { border = 'single' } },
 

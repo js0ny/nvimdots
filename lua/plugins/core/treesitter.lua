@@ -23,6 +23,7 @@ local parsers = {
   'nu',
   'python',
   'query',
+  'ron',
   'ruby',
   'rust',
   'svelte',

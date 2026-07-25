@@ -31,6 +31,7 @@ require('lazy').setup({
     { import = 'plugins.git' },
     { import = 'plugins.tools' },
     { import = 'plugins.appearance' },
+    { import = 'plugins.llm' },
   },
   lockfile = lazy_lockfile,
   checker = { enabled = false },

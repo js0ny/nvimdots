@@ -25,6 +25,23 @@ function M.exepath(name)
   local path = vim.fn.exepath(name)
   return path ~= '' and path or nil
 end
+
+---
+--- Run a command with environment variables without mutating Neovim's environment.
+---
+--- @param cmd string[]
+--- @param env table<string, string>
+--- @param input? string
+--- @return string output
+function M.system_with_env(cmd, env, input)
+  local command = { 'env' }
+  for name, value in pairs(env) do
+    table.insert(command, name .. '=' .. value)
+  end
+  vim.list_extend(command, cmd)
+
+  return vim.fn.system(command, input)
+end
 ---
 --- Return the visually selected text as an array with an entry for each line
 ---

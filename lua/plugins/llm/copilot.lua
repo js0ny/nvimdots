@@ -6,7 +6,7 @@ return {
   cmd = 'Copilot',
   build = ':Copilot auth',
   event = 'BufReadPost',
-  enabled = Config.enable_llm_completion,
+  enabled = false,
   opts = {
     suggestion = {
       auto_trigger = true,
