@@ -4,6 +4,7 @@
     enable = true;
     settings = {
       images.enabled = true;
+      input.enabled = true;
     };
   };
 }

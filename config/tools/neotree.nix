@@ -9,7 +9,7 @@
   plugins.neo-tree = {
     enable = true;
     settings = {
-      use_popup_for_input = false;
+      use_popups_for_input = false;
       close_if_last_window = false;
       popup_border_style = "rounded";
       enable_git_status = true;
