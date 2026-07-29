@@ -1,6 +1,7 @@
 {
   imports = [
     ./edit/blink-pairs.nix
+    ./appearance/which-key.nix
     ./edit/flash.nix
     ./vcs/neogit.nix
     ./appearance/lualine.nix

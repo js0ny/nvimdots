@@ -1,9 +1,9 @@
-{
-  imports = [ ./picker.nix ./dashboard.nix];
+{ myLib, ... }: {
+  imports = myLib.scanPaths ./.;
   plugins.snacks = {
     enable = true;
     settings = {
-      images.enabled = true;
+      image.enabled = true;
       input.enabled = true;
     };
   };

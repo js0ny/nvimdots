@@ -28,6 +28,7 @@
       window.mappings = {
         "l" = "open";
         "h" = "close_node";
+        "<C-S-f>" = "fuzzy_finder"; # suppress grug-far
       };
       source_selector = {
         winbar = true;

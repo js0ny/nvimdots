@@ -1,6 +1,5 @@
 {
   description = "Neovim configuration";
-
   outputs =
     {
       nixvim,

@@ -99,13 +99,19 @@ in
       cmdline = {
         keymap = {
           preset = "cmdline";
-          "<CR>" = [ "fallback" ];
+          "<CR>" = [
+            "accept"
+            "fallback"
+          ];
           "<C-f>" = [
             "select_and_accept"
             "fallback"
           ];
         };
-        completion.menu.auto_show = true;
+        completion = {
+          menu.auto_show = true;
+          list.selection.preselect = false;
+        };
       };
       sources = {
         default = [
@@ -163,4 +169,17 @@ in
       fuzzy.implementation = "prefer_rust_with_warning";
     };
   };
+  # TODO: Abort snippet on InsertLeave
+  extraConfigLua = /* lua */ ''
+    vim.api.nvim_create_autocmd("InsertLeave", {
+      group = vim.api.nvim_create_augroup("StopSnippetOnInsertLeave", {
+      clear = true,
+    }),
+      callback = function()
+        if vim.snippet.active() then
+          vim.snippet.stop()
+        end
+      end,
+    })
+  '';
 }

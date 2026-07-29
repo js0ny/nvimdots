@@ -1,3 +1,13 @@
+{ lib, pkgs, ... }:
+let
+  switchToBuffer = key: bufnr: {
+    inherit key;
+    action = "<cmd>BufferLineGoToBuffer ${bufnr}<CR>";
+    options.desc = "Switch to Buffer #${bufnr}";
+  };
+  switchToBufferSameFormatter = bufnr: formatter: switchToBuffer (formatter bufnr) bufnr;
+  winpfx = if pkgs.stdenv.isDarwin then "D" else "A";
+in
 {
   plugins.bufferline = {
     enable = true;
@@ -42,51 +52,6 @@
       key = "L";
       action = "<cmd>BufferLineCycleNext<CR>";
       options.desc = "bn";
-    }
-    {
-      key = "<leader>b1";
-      action = "<cmd>BufferLineGoToBuffer 1<CR>";
-      options.desc = "Switch to Buffer #1";
-    }
-    {
-      key = "<leader>b2";
-      action = "<cmd>BufferLineGoToBuffer 2<CR>";
-      options.desc = "Switch to Buffer #2";
-    }
-    {
-      key = "<leader>b3";
-      action = "<cmd>BufferLineGoToBuffer 3<CR>";
-      options.desc = "Switch to Buffer #3";
-    }
-    {
-      key = "<leader>b4";
-      action = "<cmd>BufferLineGoToBuffer 4<CR>";
-      options.desc = "Switch to Buffer #4";
-    }
-    {
-      key = "<leader>b5";
-      action = "<cmd>BufferLineGoToBuffer 5<CR>";
-      options.desc = "Switch to Buffer #5";
-    }
-    {
-      key = "<leader>b6";
-      action = "<cmd>BufferLineGoToBuffer 6<CR>";
-      options.desc = "Switch to Buffer #6";
-    }
-    {
-      key = "<leader>b7";
-      action = "<cmd>BufferLineGoToBuffer 7<CR>";
-      options.desc = "Switch to Buffer #7";
-    }
-    {
-      key = "<leader>b8";
-      action = "<cmd>BufferLineGoToBuffer 8<CR>";
-      options.desc = "Switch to Buffer #8";
-    }
-    {
-      key = "<leader>b9";
-      action = "<cmd>BufferLineGoToBuffer 9<CR>";
-      options.desc = "Switch to Buffer #9";
     }
     {
       key = "<leader>b#";
@@ -138,7 +103,21 @@
       action = "<cmd>BufferLineTogglePin<CR>";
       options.desc = "Pin Buffer";
     }
-  ];
+  ]
+  ++ (map (
+    num:
+    let
+      b = toString num;
+    in
+    switchToBufferSameFormatter b (s: "<leader>b${s}")
+  ) (lib.range 1 9))
+  ++ (map (
+    num:
+    let
+      b = toString num;
+    in
+    switchToBufferSameFormatter b (s: "<${winpfx}-${s}>")
+  ) (lib.range 1 9));
 
   plugins = {
     mini-icons.enable = true;
