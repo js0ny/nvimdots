@@ -3,11 +3,11 @@
     ./edit/blink-pairs.nix
     ./edit/flash.nix
     ./vcs/neogit.nix
-    ./apperance/lualine.nix
+    ./appearance/lualine.nix
     ./tools/neotree.nix
-    ./apperance/bufferline.nix
-    ./apperance/colorful-winsep.nix
-    ./apperance/noice.nix
+    ./appearance/bufferline.nix
+    ./appearance/colorful-winsep.nix
+    ./appearance/noice.nix
     ./tools/direnv.nix
     ./edit/blink-cmp.nix
     ./misc/cord.nix
@@ -18,8 +18,8 @@
     ./edit/blink-indent.nix
     ./lang/bullets.nix
     ./vcs/codediff.nix
-    ./tools/conform.nix
-    ./apperance/dropbar.nix
+    ./tools/conform
+    ./appearance/dropbar.nix
     ./vcs/gitsigns.nix
     ./tools/grug-far.nix
     ./lsp
@@ -32,7 +32,7 @@
     ./edit/treesitter-autotag.nix
     ./edit/treesitter.nix
     ./tools/toggleterm.nix
-    ./apperance/todo-comments.nix
+    ./appearance/todo-comments.nix
     ./tools/trouble.nix
     ./lang/typst-preview.nix
     ./lang/vimtex.nix

@@ -8,7 +8,17 @@ in
     lazyLoad = {
       enable = true;
       settings = {
-        cmd = [ "ConformInfo" ];
+        event = [ "BufWritePre" ];
+        cmd = [
+          "ConformInfo"
+          "Format"
+          "FormatToggle"
+        ];
+        before.__raw = /* lua */ ''
+          function()
+            ${builtins.readFile ./format.lua}
+          end
+        '';
       };
     };
     settings = {
@@ -58,3 +68,4 @@ in
     formatexpr = /* vim */ "v:lua.require'conform'.formatexpr()";
   };
 }
+
