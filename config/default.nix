@@ -1,6 +1,6 @@
 {
   imports = [
-    ./blink-pairs.nix
+    ./edit/blink-pairs.nix
     ./edit/flash.nix
     ./vcs/neogit.nix
     ./apperance/lualine.nix
@@ -37,6 +37,7 @@
     ./lang/typst-preview.nix
     ./lang/vimtex.nix
     ./tools/sops.nix
+    ./tools/limes.nix
   ];
   plugins.lz-n.enable = true;
   colorschemes.kanagawa.enable = true;

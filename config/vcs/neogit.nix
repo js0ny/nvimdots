@@ -11,4 +11,11 @@
   plugins = {
     codediff.enable = true;
   };
+  keymaps = [
+    {
+      key = "<leader>gg";
+      action = "<cmd>Neogit<CR>";
+      options.desc = "Neogit";
+    }
+  ];
 }

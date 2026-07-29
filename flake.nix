@@ -16,7 +16,7 @@
       perSystem =
         { pkgs, ... }:
         let
-          package = import ./package.nix { inherit nixvim pkgs; };
+          package = import ./package.nix { inherit inputs pkgs; };
         in
         {
           checks.default = package.config.build.test;

@@ -1,10 +1,7 @@
 { pkgs, ... }:
-let
-  sops = pkgs.callPackage ../../packages/sops.nix { };
-in
 {
   extraPlugins = [
-    sops
+    pkgs.js0ny.vimPlugins.sops-nvim
   ];
   extraConfigLua = /* lua */ ''
     require("sops").setup({})

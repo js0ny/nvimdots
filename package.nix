@@ -1,16 +1,17 @@
 {
-  nixvim,
+  inputs,
   pkgs,
 }:
 let
-  myLib = import ./lib { lib = pkgs.lib; };
-  configuration = nixvim.lib.evalNixvim {
+  pkgs' = pkgs.extend inputs.js0ny-packages.overlays.default;
+  myLib = import ./lib { lib = pkgs'.lib; };
+  configuration = inputs.nixvim.lib.evalNixvim {
     modules = [
       ./config
-      { nixpkgs.pkgs = pkgs; }
+      { nixpkgs.pkgs = pkgs'; }
     ];
     extraSpecialArgs = {
-      inherit myLib;
+      inherit inputs myLib;
     };
   };
 in
