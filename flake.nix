@@ -1,11 +1,6 @@
 {
   description = "Neovim configuration";
 
-  inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixvim.url = "github:nix-community/nixvim";
-    flake-parts.url = "github:hercules-ci/flake-parts";
-  };
   outputs =
     {
       nixvim,
@@ -18,34 +13,20 @@
         "aarch64-linux"
         "aarch64-darwin"
       ];
-
       perSystem =
-        {
-          pkgs,
-          system,
-          ...
-        }:
+        { pkgs, ... }:
         let
-          myLib = import ./lib { lib = pkgs.lib; };
-          nixvimLib = nixvim.lib.${system};
-          nixvim' = nixvim.legacyPackages.${system};
-          nixvimModule = {
-            inherit pkgs;
-            module = import ./config;
-            extraSpecialArgs = {
-              inherit myLib;
-            };
-          };
-          nvim = nixvim'.makeNixvimWithModule nixvimModule;
+          package = import ./package.nix { inherit nixvim pkgs; };
         in
         {
-          checks = {
-            default = nixvimLib.check.mkTestDerivationFromNixvimModule nixvimModule;
-          };
-
-          packages = {
-            default = nvim;
-          };
+          checks.default = package.config.build.test;
+          packages.default = package;
         };
     };
+  inputs = {
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixvim.url = "github:nix-community/nixvim";
+    flake-parts.url = "github:hercules-ci/flake-parts";
+    js0ny-packages.url = "github:js0ny/miscpkgs";
+  };
 }
