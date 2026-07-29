@@ -1,9 +1,5 @@
-{
-  imports = [
-    ./nixd.nix
-    ./nil.nix
-    ./keymaps.nix
-  ];
+{ myLib, ... }: {
+  imports = myLib.scanPaths ./.;
   plugins.lsp = {
     enable = true;
     servers = {

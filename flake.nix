@@ -26,13 +26,14 @@
           ...
         }:
         let
+          myLib = import ./lib { lib = pkgs.lib; };
           nixvimLib = nixvim.lib.${system};
           nixvim' = nixvim.legacyPackages.${system};
           nixvimModule = {
             inherit pkgs;
             module = import ./config;
             extraSpecialArgs = {
-              # inherit (inputs) foo;
+              inherit myLib;
             };
           };
           nvim = nixvim'.makeNixvimWithModule nixvimModule;

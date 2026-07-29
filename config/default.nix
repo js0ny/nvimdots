@@ -4,7 +4,7 @@
     ./edit/flash.nix
     ./vcs/neogit.nix
     ./apperance/lualine.nix
-    ./apperance/neotree.nix
+    ./tools/neotree.nix
     ./apperance/bufferline.nix
     ./apperance/colorful-winsep.nix
     ./apperance/noice.nix
@@ -29,18 +29,15 @@
     ./edit/luasnip.nix
     ./edit/multicursors.nix
     ./edit/treesitter-textobjects.nix
+    ./edit/treesitter-autotag.nix
+    ./edit/treesitter.nix
+    ./tools/toggleterm.nix
+    ./apperance/todo-comments.nix
+    ./tools/trouble.nix
+    ./lang/typst-preview.nix
+    ./lang/vimtex.nix
+    ./tools/sops.nix
   ];
   plugins.lz-n.enable = true;
   colorschemes.kanagawa.enable = true;
-  plugins = {
-    # avante.enable = true;
-    ts-autotag.enable = true;
-    treesitter.enable = true;
-    nvim-ufo.enable = true;
-    todo-comments.enable = true;
-    toggleterm.enable = true;
-    trouble.enable = true;
-    typst-preview.enable = true;
-    vimtex.enable = true;
-  };
 }
