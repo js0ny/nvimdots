@@ -39,6 +39,7 @@
     ./lang/vimtex.nix
     ./tools/sops.nix
     ./tools/limes.nix
+    ./tools/oil.nix
   ];
   plugins.lz-n.enable = true;
   colorschemes.kanagawa.enable = true;
