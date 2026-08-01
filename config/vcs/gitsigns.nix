@@ -24,7 +24,7 @@
       options.desc = "Blame file";
     }
     {
-      key = "<leader>gB";
+      key = "<leader>tb";
       action = "<cmd>Gitsigns toggle_current_line_blame<CR>";
       options.desc = "Toggle line blame";
     }

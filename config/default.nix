@@ -18,7 +18,6 @@
     ./tools/kitty-scrollback.nix
     ./edit/treesitter-context.nix
     ./edit/treesj.nix
-    ./edit/blink-indent.nix
     ./lang/bullets.nix
     ./vcs/codediff.nix
     ./tools/conform
@@ -34,7 +33,6 @@
     ./edit/treesitter-textobjects.nix
     ./edit/treesitter-autotag.nix
     ./edit/treesitter.nix
-    ./tools/toggleterm.nix
     ./appearance/todo-comments.nix
     ./tools/trouble.nix
     ./lang/typst-preview.nix

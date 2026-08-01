@@ -68,4 +68,3 @@ in
     formatexpr = /* vim */ "v:lua.require'conform'.formatexpr()";
   };
 }
-
