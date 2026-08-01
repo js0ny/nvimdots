@@ -20,5 +20,21 @@
       action.__raw = /* lua */ "vim.lsp.buf.hover";
       options.desc = "Show hover";
     }
+    {
+      key = "cd";
+      action.__raw = /* lua */ "vim.lsp.buf.rename";
+      options.desc = "Rename symbols under cursor";
+    }
   ];
+  extraConfigLuaPre = /* lua */ ''
+    local function wincmd_smart_split(func, reverse)
+      local width = vim.api.nvim_win_get_width(0)
+      if width > 80 and not reverse then
+        vim.api.nvim_command('vsp')
+      else
+        vim.api.nvim_command('sp')
+      end
+      func()
+    end
+  '';
 }

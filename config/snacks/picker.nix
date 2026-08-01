@@ -9,13 +9,16 @@ let
   pickLeader =
     key: command: desc:
     pickLeaderWithArgs key command desc "";
-  pickLeaderWithArgs = key: command: desc: args: {
-    key = "<leader>${key}";
+  pickWithArgs = key: command: desc: args: {
+    inherit key;
     action.__raw = /* lua */ ''
       function() require('snacks').picker.${command}(${args}) end
     '';
     options.desc = desc;
   };
+  pickLeaderWithArgs =
+    key: command: desc: args:
+    pickWithArgs "<leader>${key}" command desc args;
 in
 {
   plugins.snacks.settings.picker = {
@@ -57,9 +60,8 @@ in
         ];
       }
     )
-    (pickLeader "gd" "lsp_definitions" "Goto definition")
-    (pickLeader "gy" "lsp_type_definitions" "Goto T[y]pe Definition")
-    (pickLeader "gd" "lsp_references" "References") 
-    (pickLeaderWithArgs "fc" "files" "Edit Configs" "{ cwd = vim.fn.stdpath('config') }")
+    (pickWithArgs "gd" "lsp_definitions" "Goto definition" "")
+    (pickWithArgs "gy" "lsp_type_definitions" "Goto T[y]pe Definition" "")
+    (pickWithArgs "gr" "lsp_references" "References" "")
   ];
 }
