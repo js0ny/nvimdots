@@ -2,10 +2,25 @@
   description = "Neovim configuration";
   outputs =
     {
+      nixpkgs,
       nixvim,
       flake-parts,
+      js0ny-packages,
       ...
     }@inputs:
+    let
+      myLib = import ./lib { lib = nixpkgs.lib; };
+      moduleConfiguration = nixvim.lib.evalNixvim {
+        modules = [
+          ./config
+          { nixpkgs.overlays = [ js0ny-packages.overlays.default ]; }
+        ];
+        extraSpecialArgs = {
+          inherit inputs myLib;
+        };
+      };
+      inherit (moduleConfiguration.config.build) homeModule nixosModule;
+    in
     flake-parts.lib.mkFlake { inherit inputs; } {
       systems = [
         "x86_64-linux"
@@ -21,6 +36,16 @@
           checks.default = package.config.build.test;
           packages.default = package;
         };
+      flake = {
+        homeModules = {
+          default = homeModule;
+          nixvim = homeModule;
+        };
+        nixosModules = {
+          default = nixosModule;
+          nixvim = nixosModule;
+        };
+      };
     };
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
