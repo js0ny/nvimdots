@@ -8,6 +8,10 @@ let
   wrappedMove = key: action: desc: {
     inherit key;
     action = "v:count == 0 ? 'g${action}' : '${action}'";
+    mode = [
+      "n"
+      "x"
+    ];
     options = {
       inherit desc;
       expr = true;
