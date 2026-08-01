@@ -2,7 +2,7 @@
   plugins.treesj = {
     enable = true;
     lazyLoad = {
-      enable = true;
+      enable = false;
       settings = {
         keys = [ "gJ" ];
       };

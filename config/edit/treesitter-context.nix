@@ -2,7 +2,7 @@
   plugins.treesitter-context = {
     enable = true;
     lazyLoad = {
-      enable = true;
+      enable = false;
       settings = {
         keys = [ "<leader>tc" ];
         cmd = [ "TSContext" ];
