@@ -28,13 +28,18 @@
         "aarch64-darwin"
       ];
       perSystem =
-        { pkgs, ... }:
+        { pkgs, lib, ... }:
         let
           package = import ./package.nix { inherit inputs pkgs; };
         in
         {
           checks.default = package.config.build.test;
-          packages.default = package;
+          packages = rec {
+            default = package;
+            neovide = pkgs.writeShellScriptBin "neovide" ''
+              ${lib.getExe pkgs.neovide} --neovim-bin ${lib.getExe default}
+            '';
+          };
         };
       flake = {
         homeModules = {

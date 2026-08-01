@@ -17,5 +17,10 @@
       action = "<cmd>Neogit<CR>";
       options.desc = "Neogit";
     }
+    {
+      key = "<C-S-g>";
+      action = "<cmd>Neogit<CR>";
+      options.desc = "Neogit";
+    }
   ];
 }
