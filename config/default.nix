@@ -1,6 +1,7 @@
 {
   imports = [
     ./lang/fluent.nix
+    ./lang/cs.nix
     ./edit/blink-pairs.nix
     ./appearance/which-key.nix
     ./edit/flash.nix

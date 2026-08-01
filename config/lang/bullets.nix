@@ -1,18 +1,20 @@
+let
+  ft = [
+    "markdown"
+    "gitcommit"
+    "typst"
+  ];
+in
 {
   plugins.bullets = {
     enable = true;
     lazyLoad = {
       enable = true;
       settings = {
-        ft = [
-          "markdown"
-          "gitcommit"
-          "typst"
-        ];
+        inherit ft;
       };
     };
   };
-  extraConfigLuaPost = /* lua */ ''
-    vim.g.bullets_enabled_file_types = { 'markdown', 'typst', 'gitcommit' }
-  '';
+  globals.bullets_enabled_file_types = ft;
+
 }

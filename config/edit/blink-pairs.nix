@@ -1,6 +1,7 @@
 { lib, ... }:
 let
   inherit (lib.nixvim.utils) listToUnkeyedAttrs mkRaw;
+  pairCfg = pairs: cfg: (listToUnkeyedAttrs pairs // cfg);
 in
 {
   plugins.blink-pairs = {
@@ -10,11 +11,28 @@ in
         enabled = true;
         cmdline = true;
         disabled_filetypes = [ ];
-        pairs.__raw = /* lua */ ''
-          function()
-           ${builtins.readFile ./blink-pairs-pairs.lua}
-          end
-        '';
+        pairs = {
+          "'" = [
+            (pairCfg [ "''" ] {
+              languages = [ "nix" ];
+              when.__raw = /* lua */ ''
+                function(ctx)
+                  function is_inside_string()
+                    NODE = "string_fragment"
+                    local ok, node = pcall(vim.treesitter.get_node)
+                    if not ok or not node then return false end
+                    while node do
+                      if node:type() == NODE then return true end
+                      node = node:parent()
+                    end
+                    return false
+                  end
+                  return ctx:text_before_cursor(1) == "'" and not is_inside_string()
+                end
+              '';
+            })
+          ];
+        };
       };
       highlights = {
         enabled = true;

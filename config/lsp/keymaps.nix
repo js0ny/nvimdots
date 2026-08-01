@@ -22,6 +22,7 @@
     }
     {
       key = "cd";
+      mode = [ "n" ];
       action.__raw = /* lua */ "vim.lsp.buf.rename";
       options.desc = "Rename symbols under cursor";
     }

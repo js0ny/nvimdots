@@ -51,6 +51,7 @@
           }
         ]
       ];
+      header = builtins.readFile ./dashboard-header-doom.txt;
     };
     sections = [
       [ { section = "header"; } ]
