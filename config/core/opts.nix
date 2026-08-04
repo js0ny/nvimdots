@@ -10,7 +10,7 @@
     autoformat = true;
     loaded_netrw = 1;
   };
-  globalOpts = {
+  opts = {
     number = true;
     relativenumber = true;
     termguicolors = true;
