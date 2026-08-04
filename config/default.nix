@@ -1,7 +1,5 @@
 {
   imports = [
-    ./lang/fluent.nix
-    ./lang/cs.nix
     ./edit/blink-pairs.nix
     ./appearance/which-key.nix
     ./edit/flash.nix
@@ -18,7 +16,6 @@
     ./tools/kitty-scrollback.nix
     ./edit/treesitter-context.nix
     ./edit/treesj.nix
-    ./lang/bullets.nix
     ./vcs/codediff.nix
     ./tools/conform
     ./appearance/dropbar.nix
@@ -27,7 +24,6 @@
     ./lsp
     ./core
     ./snacks
-    ./lang/lazydev.nix
     ./edit/luasnip.nix
     ./edit/multicursors.nix
     ./edit/treesitter-textobjects.nix
@@ -35,8 +31,6 @@
     ./edit/treesitter.nix
     ./appearance/todo-comments.nix
     ./tools/trouble.nix
-    ./lang/typst-preview.nix
-    ./lang/vimtex.nix
     ./tools/sops.nix
     ./tools/limes.nix
     ./tools/oil.nix

@@ -24,12 +24,5 @@
         spell = true;
       };
     };
-    "ftplugin/nix.lua" = {
-      localOpts = {
-        expandtab = true;
-        shiftwidth = 2;
-        tabstop = 2;
-      };
-    };
   };
 }

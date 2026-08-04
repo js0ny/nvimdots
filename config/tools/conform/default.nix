@@ -1,6 +1,12 @@
 { lib, ... }:
 let
   inherit (lib.nixvim.utils) listToUnkeyedAttrs;
+  prettier = (
+    /*nixfmt:disable*/
+    listToUnkeyedAttrs [ "prettierd" "prettier" ]
+    // { stop_after_first = true; }
+    /*nixfmt:enable*/
+  );
 in
 {
   plugins.conform-nvim = {
@@ -26,24 +32,12 @@ in
         sh = [ "shfmt" ];
         bash = [ "shfmt" ];
         lua = [ "stylua" ];
-        nix = [ "nixfmt" ];
         nu = [ "nufmt" ];
         python = [
           "ruff"
           "black"
         ];
-        javascript = (
-          listToUnkeyedAttrs [
-            "prettierd"
-            "prettier"
-          ]
-          // {
-            stop_after_first = true;
-          }
-        );
-      };
-      default_format_opts = {
-        lsp_format = "fallback";
+        json = [ "jq" ];
       };
       formatters = {
         shfmt = {
@@ -52,6 +46,7 @@ in
             "2"
           ];
         };
+        nixfmt.args = [ "-" ];
       };
       format_on_save.__raw = /* lua */ ''
         function(bufnr)
@@ -62,6 +57,9 @@ in
           return { timeout_ms = 500, lsp_format = 'fallback' }
         end
       '';
+      default_format_opts = {
+        lsp_format = "fallback";
+      };
     };
   };
   globalOpts = {
