@@ -2,6 +2,10 @@
 
 This flake exposes the configuration as both a package and Nixvim modules.
 
+## Branches
+
+- [lazy.nvim setup](https://github.com/js0ny/nvimdots/tree/lazy)
+
 ```nix
 # flake.nix
 {
