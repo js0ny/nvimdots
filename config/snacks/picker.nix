@@ -1,4 +1,6 @@
+{ lib, ... }:
 let
+  inherit (lib.nixvim) toLuaObject;
   pickSnack = key: args: desc: {
     key = "<leader>${key}";
     action.__raw = /* lua */ ''
@@ -19,6 +21,21 @@ let
   pickLeaderWithArgs =
     key: command: desc: args:
     pickWithArgs "<leader>${key}" command desc args;
+  grepArgs = toLuaObject {
+    glob = [
+      # keep-sorted start
+      "!Cargo.lock"
+      "!composer.lock"
+      "!flake.lock"
+      "!go.sum"
+      "!package-lock.json"
+      "!pnpm-lock.yaml"
+      "!poetry.lock"
+      "!uv.lock"
+      "!yarn.lock"
+      # keep-sorted end
+    ];
+  };
 in
 {
   plugins.snacks.settings.picker = {
@@ -37,7 +54,7 @@ in
   };
   keymaps = [
     (pickLeader "<space>" "smart" "Pick files")
-    (pickLeader "/" "grep" "Grep files")
+    (pickLeaderWithArgs "/" "grep" "Grep files" grepArgs)
     (pickLeader "R" "resume" "Resume last pick")
     (pickLeader ";" "commands" "Show commands")
     (pickSnack ":" "" "Pick Snacks")
@@ -52,13 +69,10 @@ in
     (pickLeader "fh" "recent" "Recent Files")
     (pickLeader "cs" "lsp_symbols" "Search Symbols")
     (
+      /*nixfmt:disable*/
       (pickLeader "cS" "grep_word" "Search Current Symbol")
-      // {
-        mode = [
-          "n"
-          "x"
-        ];
-      }
+      // { mode = [ "n" "x" ]; }
+      /*nixfmt:enable*/
     )
     (pickWithArgs "gd" "lsp_definitions" "Goto definition" "")
     (pickWithArgs "gy" "lsp_type_definitions" "Goto T[y]pe Definition" "")
