@@ -5,7 +5,10 @@ in
 {
   plugins = {
     conform-nvim.settings = {
-      formatters_by_ft.nix = [ "nixfmt" ];
+      formatters_by_ft.nix = [
+        "nixfmt"
+        "keep-sorted"
+      ];
       formatters.nixfmt.args = [ "-" ];
     };
     lsp.servers = {

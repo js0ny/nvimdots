@@ -6,6 +6,8 @@
     };
     nui.enable = true;
   };
+  # disable netrw by letting nvim assumes it has loaded
+  globals.loaded_netrw = 1;
   plugins.neo-tree = {
     enable = true;
     settings = {
@@ -54,4 +56,12 @@
       options.desc = "Toggle Neo-tree";
     }
   ];
+  userCommands = {
+    Explore = {
+      desc = "Open Explorer";
+      range = false;
+      bang = true;
+      command = "";
+    };
+  };
 }

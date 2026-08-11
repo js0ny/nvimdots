@@ -46,7 +46,6 @@ in
             "2"
           ];
         };
-        nixfmt.args = [ "-" ];
       };
       format_on_save.__raw = /* lua */ ''
         function(bufnr)

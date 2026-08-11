@@ -51,7 +51,7 @@
           }
         ]
       ];
-      header = builtins.readFile ./dashboard-header-doom.txt;
+      header = builtins.readFile ./dashboard-header-half-life.txt;
     };
     sections = [
       [ { section = "header"; } ]

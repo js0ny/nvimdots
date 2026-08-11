@@ -1,9 +1,53 @@
+let
+  imageExt = [
+    "png"
+    "jpg"
+    "jpeg"
+    "jxl"
+    "webp"
+    "avif"
+  ];
+in
 {
+  autoCmd = [
+    {
+      event = "FileType";
+      pattern = "image";
+
+      callback.__raw = ''
+        function(args)
+          vim.keymap.set("n", "q", "<cmd>bd<cr>", {
+            buffer = args.buf,
+            silent = true,
+            nowait = true,
+            desc = "Close image",
+          })
+        end
+      '';
+    }
+  ];
   plugins.snacks = {
     enable = true;
-
-    settings.image = {
-      enabled = true;
+    settings = {
+      recent = {
+        finder = "recent_files";
+        format = "file";
+        filter = {
+          paths = builtins.listToAttrs (
+            map (ext: {
+              name = "*.${ext}";
+              value = false;
+            }) imageExt
+          );
+        };
+      };
+      image = {
+        enabled = true;
+        bo = {
+          modifiable = false;
+          modified = false;
+        };
+      };
     };
 
     # luaConfig.post = ''

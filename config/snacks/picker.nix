@@ -41,16 +41,6 @@ in
   plugins.snacks.settings.picker = {
     enabled = true;
     ui_select = true;
-    recent = {
-      finder = "recent_files";
-      format = "file";
-      filter = {
-        paths = {
-          "*.png" = false;
-          "*.jpg" = false;
-        };
-      };
-    };
   };
   keymaps = [
     (pickLeader "<space>" "smart" "Pick files")

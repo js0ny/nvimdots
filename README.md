@@ -2,9 +2,21 @@
 
 This flake exposes the configuration as both a package and Nixvim modules.
 
+
 ## Branches
 
 - [lazy.nvim setup](https://github.com/js0ny/nvimdots/tree/lazy)
+
+## Usage
+
+### Run without installation
+
+```bash
+nix run github:js0ny/nvimdots/nixvim # run in terminal
+nix run github:js0ny/nvimdots/nixvim#neovide # run with neovide
+```
+
+### Install to system
 
 ```nix
 # flake.nix
@@ -15,7 +27,7 @@ This flake exposes the configuration as both a package and Nixvim modules.
 }
 ```
 
-## Install with packages
+#### Install with packages
 
 ```nix
 {
@@ -24,7 +36,7 @@ This flake exposes the configuration as both a package and Nixvim modules.
 }
 ```
 
-## NixOS Module
+#### NixOS Module
 
 ```nix
 {
@@ -39,7 +51,7 @@ This flake exposes the configuration as both a package and Nixvim modules.
 }
 ```
 
-## Home Manager Module
+#### Home Manager Module
 
 ```nix
 {
