@@ -6,7 +6,7 @@ let
     options.desc = "Switch to Buffer #${bufnr}";
   };
   switchToBufferSameFormatter = bufnr: formatter: switchToBuffer (formatter bufnr) bufnr;
-  winpfx = if pkgs.stdenv.isDarwin then "D" else "A";
+  winpfx = if pkgs.stdenv.hostPlatform.isDarwin then "D" else "A";
 in
 {
   plugins.bufferline = {

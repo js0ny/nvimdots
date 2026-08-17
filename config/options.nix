@@ -8,7 +8,7 @@ in
     typst.enable = mkEnableOption "Typst toolchain support";
     wayland.enable = lib.mkOption {
       description = "Wayland / Linux Desktop support";
-      default = pkgs.stdenv.isLinux;
+      default = pkgs.stdenv.hostPlatform.isLinux;
     };
     nix.enable = lib.mkOption {
       description = "Nix support";

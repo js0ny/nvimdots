@@ -76,6 +76,6 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixvim.url = "github:nix-community/nixvim";
     flake-parts.url = "github:hercules-ci/flake-parts";
-    js0ny-packages.url = "github:js0ny/miscpkgs";
+    js0ny-packages.url = "git+ssh://forgejo@git.js0ny.net:2220/infra/miscpkgs.git";
   };
 }

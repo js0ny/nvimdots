@@ -2,7 +2,7 @@
 let
   limes = pkgs.js0ny.limes;
 in
-lib.mkIf pkgs.stdenv.isLinux {
+lib.mkIf pkgs.stdenv.hostPlatform.isLinux {
   extraConfigLua = /* lua */ ''
     local limes_previous_ascii_mode = nil
 
