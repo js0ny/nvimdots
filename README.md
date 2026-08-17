@@ -12,8 +12,11 @@ This flake exposes the configuration as both a package and Nixvim modules.
 ### Run without installation
 
 ```bash
-nix run github:js0ny/nvimdots/nixvim # run in terminal
-nix run github:js0ny/nvimdots/nixvim#neovide # run with neovide
+# run in terminal
+nix run github:js0ny/nvimdots/nixvim
+nix run github:js0ny/nvimdots/nixvim#minimal # closure ~700MB, with 300MB of Treesitter
+nix run github:js0ny/nvimdots/nixvim#full
+nix run github:js0ny/nvimdots/nixvim#neovide # run with neovide, based on default profile
 ```
 
 ### Install to system

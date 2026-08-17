@@ -2,6 +2,7 @@
   plugins.lsp.servers = {
     clangd = {
       enable = true;
+      package = null;
       cmd = [
         "clangd"
         "--clang-tidy"

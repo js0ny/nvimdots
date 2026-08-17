@@ -1,6 +1,13 @@
-{ lib, pkgs, ... }:
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}:
 let
   sysFlake = /* nix */ ''(builtins.getFlake "github:js0ny/nixcfgs")'';
+  cfg = config.js0ny.nix;
+  gatePackage = p: if cfg.enable then p else null;
 in
 {
   plugins = {
@@ -14,6 +21,7 @@ in
     lsp.servers = {
       nixd = {
         enable = true;
+        package = gatePackage pkgs.nixd;
         settings = {
           nixpkgs.expr = /* nix */ "import ${sysFlake}.inputs.nixpkgs { overlays = ${sysFlake}.outputs.allOverlays; }";
           formatting.command = [ "nixfmt" ];
@@ -28,6 +36,7 @@ in
       };
       nil_ls = {
         enable = true;
+        package = gatePackage pkgs.nil;
         onAttach.function = /* lua */ ''
           if client.name == 'nil_ls' then
             client.server_capabilities.definitionProvider = false -- use nixd

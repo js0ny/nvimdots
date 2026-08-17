@@ -1,14 +1,39 @@
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
-  imageExt = [
+  cfg = config.js0ny.image;
+  # from https://github.com/folke/snacks.nvim/blob/main/docs/image.md
+  formats = [
     "png"
     "jpg"
     "jpeg"
-    "jxl"
+    "gif"
+    "bmp"
     "webp"
+    "tiff"
+    "heic"
     "avif"
+    "mp4"
+    "mov"
+    "avi"
+    "mkv"
+    "webm"
+    "pdf"
+    "icns"
   ];
 in
-{
+lib.mkIf cfg.enable {
+
+  extraPackages = with pkgs; [
+    ghostscript_headless
+    imagemagick
+    typst
+  ];
+
   autoCmd = [
     {
       event = "FileType";
@@ -37,15 +62,19 @@ in
             map (ext: {
               name = "*.${ext}";
               value = false;
-            }) imageExt
+            }) formats
           );
         };
       };
       image = {
+        inherit formats;
         enabled = true;
         bo = {
           modifiable = false;
           modified = false;
+        };
+        convert = {
+          notify = true;
         };
       };
     };
@@ -109,5 +138,4 @@ in
     #   end
     # '';
   };
-
 }

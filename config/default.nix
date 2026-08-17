@@ -36,6 +36,7 @@
     ./tools/limes.nix
     ./tools/oil.nix
     ./lang
+    ./options.nix
   ];
   plugins.lz-n.enable = true;
   colorschemes.kanagawa.enable = true;

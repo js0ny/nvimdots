@@ -30,12 +30,32 @@
       perSystem =
         { pkgs, lib, ... }:
         let
-          package = import ./package.nix { inherit inputs pkgs; };
+          mkPackage = extraModules: import ./package.nix { inherit extraModules inputs pkgs; };
+          mkProfile = enabled: {
+            js0ny =
+              lib.genAttrs
+                [
+                  "image"
+                  "lua"
+                  "nix"
+                  "typst"
+                ]
+                (_: {
+                  enable = enabled;
+                })
+              // {
+                wayland.enable = enabled && lib.meta.availableOn pkgs.stdenv.hostPlatform pkgs.wl-clipboard;
+              };
+          };
+          package = mkPackage [ ];
+          full = mkPackage [ (mkProfile true) ];
+          minimal = mkPackage [ (mkProfile false) ];
         in
         {
           checks.default = package.config.build.test;
           packages = rec {
             default = package;
+            inherit full minimal;
             neovide = pkgs.writeShellScriptBin "neovide" ''
               ${lib.getExe pkgs.neovide} --neovim-bin ${lib.getExe default}
             '';

@@ -1,4 +1,5 @@
 {
+  extraModules ? [ ],
   inputs,
   pkgs,
 }:
@@ -9,7 +10,8 @@ let
     modules = [
       ./config
       { nixpkgs.pkgs = pkgs'; }
-    ];
+    ]
+    ++ extraModules;
     extraSpecialArgs = {
       inherit inputs myLib;
     };

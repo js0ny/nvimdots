@@ -3,7 +3,6 @@
   plugins.snacks = {
     enable = true;
     settings = {
-      image.enabled = true;
       input.enabled = true;
       indent.enabled = true;
       terminal.enabled = true;

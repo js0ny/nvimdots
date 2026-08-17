@@ -2,6 +2,7 @@ let
   ft = [
     "markdown"
     "gitcommit"
+    "typst"
   ];
 in
 {
@@ -14,6 +15,15 @@ in
       };
     };
   };
-  globals.bullets_enabled_file_types = ft;
-
+  globals = {
+    bullets_enabled_file_types = ft;
+    bullets_set_mappings = 0;
+    bullets_custom_mappings = [
+      [
+        "imap"
+        "<M-CR>"
+        "<Plug>(bullets-newline)"
+      ]
+    ];
+  };
 }

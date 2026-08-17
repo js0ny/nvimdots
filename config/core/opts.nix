@@ -58,4 +58,9 @@
       return parts
     end
   '';
+  withPython3 = lib.mkDefault false;
+  withNodeJs = lib.mkDefault false;
+  withPerl = lib.mkDefault false;
+  withRuby = lib.mkDefault false;
+  dependencies.git.package = lib.mkDefault pkgs.gitMinimal;
 }
