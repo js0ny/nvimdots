@@ -61,7 +61,7 @@
       desc = "Open Explorer";
       range = false;
       bang = true;
-      command = "";
+      command = "<cmd>Neotree toggle<CR>";
     };
   };
 }
