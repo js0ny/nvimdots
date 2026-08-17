@@ -56,5 +56,5 @@ in
       shiftwidth = 2;
     };
   };
-  extraPackages = [ pkgs.nixfmt ];
+  extraPackages = lib.optionals (cfg.enable) [ pkgs.nixfmt ];
 }
