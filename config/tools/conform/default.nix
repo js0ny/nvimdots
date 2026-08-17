@@ -1,12 +1,11 @@
 { lib, ... }:
 let
   inherit (lib.nixvim.utils) listToUnkeyedAttrs;
-  prettier = (
-    /*nixfmt:disable*/
-    listToUnkeyedAttrs [ "prettierd" "prettier" ]
-    // { stop_after_first = true; }
-    /*nixfmt:enable*/
+  /*nixfmt:disable*/
+  prettier = ( listToUnkeyedAttrs 
+    [ "prettierd" "prettier" ] // { stop_after_first = true; }
   );
+  /*nixfmt:enable*/
 in
 {
   plugins.conform-nvim = {

@@ -121,7 +121,6 @@ in
           "snippets"
         ];
         per_filetype = {
-          org = [ "orgmode" ];
           markdown = [
             "lsp"
             "path"

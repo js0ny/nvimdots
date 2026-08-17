@@ -2,7 +2,6 @@ let
   ft = [
     "markdown"
     "gitcommit"
-    "typst"
   ];
 in
 {

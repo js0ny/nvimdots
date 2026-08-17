@@ -11,6 +11,7 @@ in
         enabled = true;
         cmdline = true;
         disabled_filetypes = [ ];
+        # https://github.com/Saghen/blink.pairs/blob/main/lua/blink/pairs/config/mappings.lua#L52
         pairs = {
           "'" = [
             (pairCfg [ "''" ] {

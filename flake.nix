@@ -42,8 +42,8 @@
           };
         };
       flake = {
-        homeModules = {
-          default = homeModule;
+        homeModules = rec {
+          default = nixvim;
           nixvim = homeModule;
         };
         nixosModules = {
