@@ -24,4 +24,5 @@
       options.desc = "Rename file";
     }
   ];
+  extraConfigLua = builtins.readFile ./commands.lua;
 }
