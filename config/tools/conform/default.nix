@@ -1,13 +1,4 @@
-{ lib, ... }:
-let
-  inherit (lib.nixvim.utils) listToUnkeyedAttrs;
-  /*nixfmt:disable*/
-  prettier = ( listToUnkeyedAttrs 
-    [ "prettierd" "prettier" ] // { stop_after_first = true; }
-  );
-  /*nixfmt:enable*/
-in
-{
+_: {
   plugins.conform-nvim = {
     enable = true;
     lazyLoad = {
