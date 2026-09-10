@@ -1,3 +1,4 @@
+Snacks = require('snacks')
 vim.api.nvim_create_user_command('Rename', function(args)
   Snacks.rename.rename_file()
 end, {

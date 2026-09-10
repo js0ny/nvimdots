@@ -9,7 +9,6 @@
           "TodoTrouble"
           "TodoQuickFix"
           "TodoLocList"
-          "TodoSnacks"
         ];
       };
     };

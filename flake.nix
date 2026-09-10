@@ -39,6 +39,7 @@
                   "lua"
                   "nix"
                   "typst"
+                  "configFiles"
                 ]
                 (_: {
                   enable = enabled;
