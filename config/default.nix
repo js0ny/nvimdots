@@ -1,6 +1,7 @@
 {
   imports = [
     ./tools/diagnostic.nix
+    ./tools/dap.nix
     ./edit/blink-pairs.nix
     ./appearance/which-key.nix
     ./edit/flash.nix

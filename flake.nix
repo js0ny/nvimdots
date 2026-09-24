@@ -35,11 +35,15 @@
             js0ny =
               lib.genAttrs
                 [
+                  # keep-sorted start
+                  "configFiles"
+                  "cxx"
                   "image"
                   "lua"
                   "nix"
+                  "python"
                   "typst"
-                  "configFiles"
+                  # keep-sorted end
                 ]
                 (_: {
                   enable = enabled;
@@ -60,6 +64,13 @@
             neovide = pkgs.writeShellScriptBin "neovide" ''
               ${lib.getExe pkgs.neovide} --neovim-bin ${lib.getExe default}
             '';
+          };
+          devShells.default = pkgs.mkShellNoCC {
+            buildInputs = with pkgs; [
+              lua-language-server
+              keep-sorted
+              stylua
+            ];
           };
         };
       flake = {
