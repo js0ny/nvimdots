@@ -31,14 +31,20 @@ in
     clangd = {
       enable = true;
       package = gatePackage pkgs.clang-tools;
-      cmd = [
-        "clangd"
-        "--clang-tidy"
-        "--header-insertion=iwyu"
-        "--completion-style=detailed"
-        "--function-arg-placeholders"
-        "--fallback-style=none"
-      ];
+      extraOptions.cmd.__raw = /* lua */ ''
+        function(dispatchers, config)
+          -- The fallback style is fixed when clangd starts and shared by buffers using this client.
+          local cmd = {
+            "clangd",
+            "--clang-tidy",
+            "--header-insertion=iwyu",
+            "--completion-style=detailed",
+            "--function-arg-placeholders",
+            "--fallback-style={BasedOnStyle: LLVM, IndentWidth: " .. vim.fn.shiftwidth() .. "}",
+          }
+          return vim.lsp.rpc.start(cmd, dispatchers, { cwd = config.cmd_cwd, env = config.cmd_env })
+        end
+      '';
       filetypes = [
         "c"
         "cpp"
