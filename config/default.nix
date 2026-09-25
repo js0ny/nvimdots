@@ -2,6 +2,7 @@
   imports = [
     ./tools/diagnostic.nix
     ./tools/dap.nix
+    ./tools/code-runner.nix
     ./edit/blink-pairs.nix
     ./appearance/which-key.nix
     ./edit/flash.nix

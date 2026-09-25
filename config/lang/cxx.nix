@@ -19,6 +19,12 @@ let
     '';
     cwd = "\${workspaceFolder}";
   };
+  localOpts = {
+    expandtab = true;
+    tabstop = 4;
+    softtabstop = 4;
+    shiftwidth = 4;
+  };
 in
 {
   plugins.lsp.servers = {
@@ -62,5 +68,10 @@ in
       cpp = [ launch ];
       rust = [ launch ];
     };
+  };
+
+  files = {
+    "after/ftplugin/c.lua" = { inherit localOpts; };
+    "after/ftplugin/cpp.lua" = { inherit localOpts; };
   };
 }
