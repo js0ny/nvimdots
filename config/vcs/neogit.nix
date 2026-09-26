@@ -11,6 +11,17 @@
   plugins = {
     codediff.enable = true;
   };
+  autoCmd = [
+    {
+      event = "User";
+      pattern = "NeogitStatusRefreshed";
+      callback.__raw = ''
+        function()
+          require("neo-tree.sources.manager").refresh("filesystem")
+        end
+      '';
+    }
+  ];
   keymaps = [
     {
       key = "<leader>gg";
