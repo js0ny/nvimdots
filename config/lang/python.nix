@@ -42,6 +42,13 @@ in
     ruff = {
       enable = true;
       package = gatePackage pkgs.ruff;
+      settings = lib.mkDefault {
+        init_options.settings = {
+          lint.ignore = [
+            "EXE001" # shebang-not-executable: This will report false negative when envfs enabled
+          ];
+        };
+      };
     };
   };
   plugins.dap = lib.mkIf cfg.enable {

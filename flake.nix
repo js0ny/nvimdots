@@ -40,6 +40,7 @@
                   "cxx"
                   "image"
                   "lua"
+                  "markdown"
                   "nix"
                   "python"
                   "typst"

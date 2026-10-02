@@ -29,9 +29,18 @@ in
         numbers = "ordinal";
         name_formatter = /* lua */ ''
           function(buf)
-            -- Nix: truncate default.nix -> folder name with slash
             if buf.name:match('default.nix') then
               return vim.fn.fnamemodify(buf.path, ':h:t') .. '/'
+            end
+            if buf.name:match('__init__.py') then
+              return vim.fn.fnamemodify(buf.path, ':h:t') .. '/'
+            end
+            if buf.name:match('mod.rs') then
+              return vim.fn.fnamemodify(buf.path, ':h:t') .. '/'
+            end
+            local parent = vim.fn.fnamemodify(buf.path, ':h:t')
+            if buf.name == parent .. '.md' then
+              return parent .. '/'
             end
           end
         '';

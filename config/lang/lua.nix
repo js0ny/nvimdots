@@ -32,4 +32,12 @@ in
       ];
     };
   };
+  files."after/ftplugin/lua.lua" = {
+    localOpts = {
+      expandtab = true;
+      tabstop = 2;
+      softtabstop = 2;
+      shiftwidth = 2;
+    };
+  };
 }

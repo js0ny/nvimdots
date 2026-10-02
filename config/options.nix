@@ -15,6 +15,7 @@ in
       description = "Lua support";
       default = true;
     };
+    markdown.enable = mkEnableOption "Markdown toolchain support";
     nix.enable = lib.mkOption {
       description = "Nix support";
       default = true;
