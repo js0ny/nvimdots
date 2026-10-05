@@ -86,9 +86,9 @@
       };
     };
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.follows = "js0ny-packages/nixpkgs";
     nixvim.url = "github:nix-community/nixvim";
-    flake-parts.url = "github:hercules-ci/flake-parts";
+    flake-parts.follows = "js0ny-packages/flake-parts";
     js0ny-packages.url = "github:js0ny/miscpkgs";
   };
 }
