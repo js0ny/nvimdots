@@ -76,6 +76,7 @@ lib.mkIf cfg.enable {
         convert = {
           notify = true;
         };
+        img_dirs = [ "_system/attach" ];
       };
     };
 
