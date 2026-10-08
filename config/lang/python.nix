@@ -35,9 +35,9 @@ let
 in
 {
   plugins.lsp.servers = {
-    basedpyright = {
+    ty = {
       enable = true;
-      package = gatePackage pkgs.basedpyright;
+      package = gatePackage pkgs.ty;
     };
     ruff = {
       enable = true;
