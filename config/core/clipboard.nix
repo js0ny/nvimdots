@@ -1,9 +1,5 @@
-{ pkgs, config, ... }:
-{
-  clipboard.providers = {
-    pbcopy.enable = pkgs.stdenv.hostPlatform.isDarwin;
-    wl-copy.enable = config.js0ny.wayland.enable;
-  };
+_: {
+  globals.clipboard = "osc52";
   globalOpts = {
     clipboard = "unnamedplus";
   };
