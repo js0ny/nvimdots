@@ -41,7 +41,7 @@ in
       };
       completion = {
         menu = {
-          border = "single";
+          border = "rounded";
           draw = {
             # columns = mkRaw /* lua */ ''
             #   {
@@ -172,6 +172,10 @@ in
       clear = true,
     }),
       callback = function()
+        local loaded, blink = pcall(require, "blink.cmp")
+        if loaded then
+          blink.cancel()
+        end
         if vim.snippet.active() then
           vim.snippet.stop()
         end

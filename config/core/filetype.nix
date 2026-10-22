@@ -10,6 +10,7 @@
     };
     filename = {
       "settings.json" = "jsonc";
+      "fish_history" = "yaml";
     };
   };
 }
