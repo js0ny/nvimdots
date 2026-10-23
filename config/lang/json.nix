@@ -1,5 +1,11 @@
-{ lib, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 let
+  cfg = config.js0ny.configFiles;
   inherit (lib.nixvim.utils) listToUnkeyedAttrs;
   prettier = (
     /*nixfmt:disable*/
@@ -13,6 +19,7 @@ let
     softtabstop = 2;
     shiftwidth = 2;
   };
+  gatePackage = p: if cfg.enable then p else null;
 in
 {
   plugins = {
@@ -20,8 +27,10 @@ in
       json = [ "jq" ];
       jsonc = prettier;
     };
-
-    lsp.servers.jsonls.enable = lib.mkDefault false;
+    lsp.servers.jsonls = {
+      enable = true;
+      package = gatePackage pkgs.vscode-langservers-extracted;
+    };
     schemastore = {
       enable = true;
       json.enable = true;

@@ -43,6 +43,9 @@
     ./vcs/neogit.nix
     # keep-sorted end
   ];
-  plugins.lz-n.enable = true;
-  colorschemes.kanagawa.enable = true;
+  plugins = {
+    lz-n.enable = true;
+    startup.enable = true;
+  };
+  colorschemes.catppuccin.enable = true;
 }
