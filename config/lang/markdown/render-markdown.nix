@@ -6,7 +6,7 @@ let
 in
 {
   plugins.render-markdown = {
-    enable = true;
+    enable = false;
     lazyLoad = {
       enable = true;
       settings = {

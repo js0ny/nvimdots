@@ -15,6 +15,9 @@ in
   extraPlugins = [ pkgs.js0ny.vimPlugins.typst-infect-nvim ];
   extraConfigLua = ''
     require('typst-infect').setup({
+      markdown = {
+        enabled = false,
+      },
       org = {
         enabled = true,
         variants = {
