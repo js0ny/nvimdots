@@ -40,6 +40,7 @@
     ./tools/trouble.nix
     ./vcs/codediff.nix
     ./vcs/gitsigns.nix
+    ./vcs/jj.nix
     ./vcs/neogit.nix
     # keep-sorted end
   ];
