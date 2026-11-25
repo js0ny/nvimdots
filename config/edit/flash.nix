@@ -3,15 +3,17 @@
   plugins.flash = {
     enable = true;
   };
-  extraPlugins = [
-    pkgs.js0ny.vimPlugins.flash-any-nvim
+  extraPlugins = with pkgs.js0ny.vimPlugins; [
+    flash-any-nvim
+    flash-any-pinyin-nvim
+    flash-any-nerdfont-nvim
   ];
   extraConfigLua = /* lua */ ''
     require("flash-any").setup({
       sources = {
         { name = "pinyin", scheme = "natural" },
         "nerdfont",
-        "unicode",
+        "latin",
       },
     })
   '';
